@@ -14,11 +14,7 @@ export class ProductComponent {
     Id: 0,
     Price:0
   }
-  // without model
 
-  //saveProduct(productForm: NgForm): void {
-  //  console.log(productForm.value);
-  //}
 
   saveProduct(productForm: NgForm): void {
     console.log(productForm.value);
