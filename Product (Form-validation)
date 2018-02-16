@@ -1,0 +1,62 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { Product } from '../product/product.model';
+@Component({
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
+})
+export class ProductComponent {
+
+  product: Product = {
+    Code: null,
+    Name: null,
+    Id: 0,
+    Price:0
+  }
+  // without model
+
+  //saveProduct(productForm: NgForm): void {
+  //  console.log(productForm.value);
+  //}
+
+  saveProduct(productForm: NgForm): void {
+    console.log(productForm.value);
+  }
+
+}
+================================== HTML ================================================
+
+<form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)">
+  <div class="card ">
+    <div class="card-header">
+      <h4>Product Entry</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="ProductCode">Product Code</label>
+            <input type="text" name="ProductCode" class="form-control" [class.is-invalid]="ProductCodeControl.invalid && ProductCodeControl.touched" id="ProductCode" [(ngModel)]="ProductCode" #ProductCodeControl="ngModel" required>
+            <small class="invalid-feedback"> Please type a product code.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="ProductName">Product Name</label>
+            <input type="text" name="ProductName" class="form-control" [class.is-invalid]="ProductNameControl.invalid && ProductNameControl.touched" id="ProductName" [(ngModel)]="ProductName" #ProductNameControl="ngModel" required>
+            <small class="invalid-feedback"> Please type a product name.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="ProductPrice">Product price</label>
+            <input type="text" name="ProductPrice" class="form-control" [class.is-invalid]="ProductPriceControl.invalid && ProductPriceControl.touched" id="ProductPrice" [(ngModel)]="ProductPrice" #ProductPriceControl="ngModel" required>
+            <small class="invalid-feedback"> Please type a product price.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <input type="submit" name="" value="Submit" class="btn btn-danger mr-md" [disabled]="productForm.invalid"/>
+    </div>
+  </div>
+</form>
